@@ -20,11 +20,10 @@ Auction App is a full-stack web application that allows users to create, manage,
 
 ## Features
 
-- **User Authentication**: Users can register, log in, and log out. The system supports roles such as `buyer`, `seller`, and `admin`.
+- **User Authentication**: Users can register, log in, and log out. The system supports roles such as `buyer`, `seller`.
 - **Auction Management**:
   - Sellers can create and manage auctions.
   - Buyers can place bids on active auctions.
-  - Real-time updates for bids using WebSocket (optional feature).
 - **Categories**: Predefined categories for organizing auctions.
 - **Pagination**: Auctions are paginated for better user experience.
 - **Role-Based Access Control**: Only sellers can create auctions, and only auction owners can delete their auctions.
@@ -40,7 +39,6 @@ Auction App is a full-stack web application that allows users to create, manage,
 - **MongoDB** with **Mongoose**: For database management and schema validation.
 - **JWT**: For secure user authentication and authorization.
 - **Swagger**: For API documentation.
-- **WebSocket**: For real-time updates (e.g., new bids).
 
 ### Frontend
 - **React**: For building the user interface.
