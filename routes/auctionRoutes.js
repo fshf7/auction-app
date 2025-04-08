@@ -70,8 +70,6 @@ router.post('/', authMiddleware, createAuction);
  */
 router.get('/', getAuctions);
 
-
-
 /**
  * @swagger
  * /api/auctions/{id}:
