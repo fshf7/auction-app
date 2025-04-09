@@ -11,6 +11,32 @@ const router = express.Router();
  *   name: Users
  *   description: User management
  */
+/**
+ * @swagger
+ * /api/users/profile:
+ *   get:
+ *     summary: Get authenticated user profile
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile data
+ *       401:
+ *         description: Unauthorized
+ */
+router.get('/profile', authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).select('-password'); // Исключаем пароль
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+});
 
 /**
  * @swagger
@@ -46,32 +72,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-/**
- * @swagger
- * /api/users/profile:
- *   get:
- *     summary: Get authenticated user profile
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: User profile data
- *       401:
- *         description: Unauthorized
- */
-router.get('/profile', authMiddleware, async (req, res) => {
-    try {
-        const user = await User.findById(req.user._id).select('-password'); // Исключаем пароль
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.json(user);
-    } catch (error) {
-        console.error('Error fetching user profile:', error);
-        res.status(500).json({ message: 'Server error', error: error.message });
-    }
-});
 
 /**
  * @swagger
